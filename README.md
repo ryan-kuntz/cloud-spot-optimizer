@@ -31,20 +31,23 @@ This project builds a forecasting tool that predicts future spot prices and reco
 
 ## Project Structure
 
-| Notebook | What it does |
+| Path | What it does |
 |----------|-------------|
-| 01_data_ingestion | Loading and filtering raw AWS spot price data |
-| 02_data_collection | Merging external data sources |
-| 03_eda | Exploratory analysis and pattern identification |
-| 04_feature_engineering | Creating time-based and lag features for modelling |
-| 05_modelling | Training, evaluating, and tuning the forecasting model |
-| 06_conclusions | Recommendations and business implications |
+| `src/ingest.py` | Loads raw AWS spot price data from Zenodo `.tsv.zst` files |
+| `src/preprocess.py` | Filters to relevant regions, GPU instance types, and OS |
+| `src/collect.py` | Merges external macro signals (natural gas prices via FRED) |
+| `src/features.py` | Creates time-based (and, soon, lag) features for modelling |
+| `src/train.py` | Trains, evaluates, and saves the forecasting model |
+| `src/evaluate.py` | Evaluates model performance and reports feature importances |
+| `notebooks/01_eda.ipynb` | Exploratory analysis and pattern identification |
+| `notebooks/02_feature_engineering.ipynb` | Documents feature engineering decisions |
+| `app/app.py` | Streamlit dashboard (in progress — see open issues) |
 
 ---
 
 ## Data Sources
 
-- **AWS Spot Price History** via the Boto3 API / [Zenodo dataset](Add link)
+- **AWS Spot Price History** via the [Zenodo dataset](https://zenodo.org/records/18821638) (raw `.tsv.zst` monthly snapshots)
 
 ---
 
@@ -52,8 +55,8 @@ This project builds a forecasting tool that predicts future spot prices and reco
 
 ```bash
 # Clone the repo
-git clone https://github.com/ryan-kuntz/cloud-spot-optimizer.git
-cd cloud-spot-optimizer
+git clone https://github.com/ryan-kuntz/cloud-job-scheduler.git
+cd cloud-job-scheduler
 
 # Create and activate virtual environment
 python -m venv venv
@@ -66,7 +69,7 @@ venv\Scripts\activate
 # Install dependencies
 pip install -r requirements.txt
 
-# Launch the dashboard
+# Launch the dashboard (in progress — see open issues)
 streamlit run app/app.py
 ```
 
