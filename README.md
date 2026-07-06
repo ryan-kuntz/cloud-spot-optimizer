@@ -106,3 +106,5 @@ Open `notebooks/01_eda.ipynb` to start.
 
 - Currently scoped to a subset of GPU instance types and AWS regions
 - Model does not yet account for interruption probability (only price)
+- The model is trained on a fixed historical snapshot and will grow stale over time as spot price dynamics shift (new instance types, capacity/demand changes) — it needs periodic retraining, not a one-time build
+- EDA, feature engineering, and training intentionally run on frozen data snapshots for reproducibility; only the live dashboard's current-price feed is meant to be real-time — the two should not be conflated
